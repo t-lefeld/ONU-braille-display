@@ -1,0 +1,11 @@
+Reference,Part,Value / PN,Qty,Function,Notes
+U1,TP5100,TP5100,1,2S LiPo charger,USB-C input
+U2,MT3608,MT3608,1,Boost converter,Fixed 9V solenoid rail
+U3-U7,74HC2238D,74HC2238D,5,3-to-8 decoder,Cell select; pull-down on /E pin
+D1-D40,BAT54S,BAT54S,40,Schottky diode,Solenoid flyback protection
+BT1,2S LiPo,500mAh,1,Main power source,
+SW1,Power switch,SPDT,1,Power rail enable,
+SOL1-SOL40,Solenoid,TBD,40,Braille pin actuation,8 per cell x 5 cells
+R1-R5,Resistor pack,10k ohm,5,Enable pin pull-down,One per decoder /E pin
+C1,Capacitor,100uF,1,MT3608 output bulk cap,Rail stiffness under pulse load
+C2-C6,Capacitor,100nF,5,Decoder VCC decoupling,One per 74HC2238D
