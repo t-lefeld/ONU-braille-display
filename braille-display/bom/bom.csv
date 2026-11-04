@@ -2,7 +2,7 @@ Reference,Part,Value / PN,Qty,Function,Notes
 U1,BQ25616J,BQ25616JRTWR,1,1S Li-ion charger,USB-C input; narrow-VDC power path; JEITA; 24-pin WQFN
 U2,TPS61085,TPS61085PWR,1,Boost converter,12V solenoid rail; FB divider 158k/18.2k
 U3,TPS61085,TPS61085PWR,1,Boost converter,5V logic rail; FB divider 54.9k/18.2k
-U4-U8,74HC238D,74HC238D,5,3-to-8 decoder,"Cell select; pull-down on /E pin. VERIFY: previously listed as 74HC2238D, which does not appear to be a valid part number - confirm against schematic"
+U4-U8,74HC238D,74HC238D,5,3-to-8 decoder,Cell select; 10k pull-down on /E pin for defined powerup state
 D1-D40,BAT54S,BAT54S,40,Schottky diode,Solenoid flyback protection
 D41,PMEG2010AEH,PMEG2010AEH,1,Schottky rectifier,12V boost rectifier
 D42,PMEG2010AEH,PMEG2010AEH,1,Schottky rectifier,5V boost rectifier
