@@ -1,11 +1,43 @@
 Reference,Part,Value / PN,Qty,Function,Notes
-U1,TP5100,TP5100,1,2S LiPo charger,USB-C input
-U2,MT3608,MT3608,1,Boost converter,Fixed 9V solenoid rail
-U3-U7,74HC2238D,74HC2238D,5,3-to-8 decoder,Cell select; pull-down on /E pin
+U1,BQ25616J,BQ25616JRTWR,1,1S Li-ion charger,USB-C input; narrow-VDC power path; JEITA; 24-pin WQFN
+U2,TPS61085,TPS61085PWR,1,Boost converter,12V solenoid rail; FB divider 158k/18.2k
+U3,TPS61085,TPS61085PWR,1,Boost converter,5V logic rail; FB divider 54.9k/18.2k
+U4-U8,74HC238D,74HC238D,5,3-to-8 decoder,"Cell select; pull-down on /E pin. VERIFY: previously listed as 74HC2238D, which does not appear to be a valid part number - confirm against schematic"
 D1-D40,BAT54S,BAT54S,40,Schottky diode,Solenoid flyback protection
-BT1,2S LiPo,500mAh,1,Main power source,
+D41,PMEG2010AEH,PMEG2010AEH,1,Schottky rectifier,12V boost rectifier
+D42,PMEG2010AEH,PMEG2010AEH,1,Schottky rectifier,5V boost rectifier
+BT1,Li-ion cell,2000mAh 1S,1,Main power source,Bare cell - protection PCM recommended for production
+RT1,Thermistor,103AT-2,1,Battery temperature,JEITA monitoring; bond to cell body NOT to PCB
+J1,USB-C receptacle,USB-C 16P,1,Power input,5.1k on each CC pin to GND
+J2,B3B-XH-A,B3B-XH-A,1,Battery connector,"3-pin: BAT+, NTC, GND"
+L1,Inductor,1uH,1,Charger inductor,BQ25616J SW to SYS
+L2-L3,Inductor,3.3uH,2,Boost inductor,Isat >= 2A
 SW1,Power switch,SPDT,1,Power rail enable,
-SOL1-SOL40,Solenoid,TBD,40,Braille pin actuation,8 per cell x 5 cells
-R1-R5,Resistor pack,10k ohm,5,Enable pin pull-down,One per decoder /E pin
-C1,Capacitor,100uF,1,MT3608 output bulk cap,Rail stiffness under pulse load
-C2-C6,Capacitor,100nF,5,Decoder VCC decoupling,One per 74HC2238D
+SOL1-SOL40,Solenoid,Custom wound,40,Braille pin actuation,"8 per cell x 5 cells; AWG 38 on Fair-Rite 3067990861 core, 2.5x20mm 67 material"
+MAG1-MAG40,Cam magnet,N52 NdFeB 2x1mm,40,Bistable detent,2x scaled from reference design
+R1,Resistor,316 ohm,1,ILIM set,BQ25616J input current limit ~1.5A
+R2,Resistor,681 ohm,1,ICHG set,BQ25616J charge current ~1A (0.5C into 2000mAh)
+R3,Resistor,5.36k 1%,1,TS network RT1,REGN to TS; 1% required
+R4,Resistor,31.6k 1%,1,TS network RT2,TS to GND; 1% required
+R5-R6,Resistor,10k ohm,2,STAT/PG pullup,To REGN
+R7-R8,Resistor,5.1k ohm,2,USB-C CC,One per CC pin to GND
+R9-R13,Resistor pack,10k ohm,5,Enable pin pull-down,One per decoder /E pin
+R14,Resistor,158k 1%,1,12V FB upper,TPS61085 feedback divider
+R15,Resistor,54.9k 1%,1,5V FB upper,TPS61085 feedback divider
+R16-R17,Resistor,18.2k 1%,2,FB lower,TPS61085 feedback divider
+R18,Resistor,47k,1,12V COMP,TPS61085 compensation
+R19,Resistor,13k,1,5V COMP,TPS61085 compensation; tune on bench
+C1,Capacitor,1uF,1,VBUS decoupling,Close to BQ25616J pin 24
+C2,Capacitor,10uF,1,PMID bulk,Shortest possible trace to PMID/GND
+C3,Capacitor,1nF,1,PMID HF filter,Place beside C2
+C4,Capacitor,47nF,1,BTST,SW to BTST
+C5,Capacitor,4.7uF 10V,1,REGN decoupling,Close to IC
+C6,Capacitor,10uF,1,SYS bulk,
+C7,Capacitor,10uF,1,BAT bulk,
+C8-C9,Capacitor,10uF,2,Boost input,One per TPS61085
+C10-C11,Capacitor,1uF,2,Boost IN bypass,One per TPS61085
+C12-C15,Capacitor,10uF 25V,4,12V output,2x per rail
+C16,Capacitor,1.6nF,1,12V COMP cap,
+C17,Capacitor,3.3nF,1,5V COMP cap,
+C18-C19,Capacitor,100nF,2,Soft-start,One per TPS61085 SS pin
+C20-C24,Capacitor,100nF,5,Decoder VCC decoupling,One per decoder

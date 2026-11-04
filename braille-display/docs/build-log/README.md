@@ -6,9 +6,11 @@ Dated entries documenting decisions, failures, and changes throughout the projec
 
 | # | Entry | Topic |
 |---|-------|-------|
-| 01 | [Power Architecture](01_power_architecture.md) | 2S LiPo rail design, boost converter selection |
+| 01 | [Power Architecture](01_power_architecture.md) | 2S LiPo rail design, boost converter selection — **superseded by 04** |
 | 02 | [v1 Failure Analysis](02_v1_failure_analysis.md) | Shoot-through root cause — shift register powerup state |
 | 03 | [v2 Redesign](03_v2_redesign.md) | Decoder swap, Schottky diode selection, enable pin strategy |
+| 04 | [Power Redesign](04_power_redesign_bq25616j.md) | BQ25616J single-cell architecture, power path, JEITA thermistor, pin-level design |
+| 05 | [Driver Iteration History](05_driver_iteration_history.md) | H-bridge → DRV8912 → decoder, and why each was rejected |
 
 ---
 
