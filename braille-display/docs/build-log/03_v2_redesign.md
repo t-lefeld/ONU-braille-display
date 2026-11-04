@@ -5,15 +5,15 @@
 
 ## Overview
 
-v2 is a ground-up redesign of the cell-select and power architecture based on the root cause identified in the v1 failure analysis. The core change is replacing shift registers with 74HC2238D decoders and hardening the power rail separation.
+v2 is a ground-up redesign of the cell-select and power architecture based on the root cause identified in the v1 failure analysis. The core change is replacing shift registers with 74HC238D decoders and hardening the power rail separation.
 
 ## Changes from v1
 
-### Cell Addressing: Shift Registers → 74HC2238D Decoders
+### Cell Addressing: Shift Registers → 74HC238D Decoders
 
 **v1:** Each solenoid was addressed via cascaded shift registers. On powerup, outputs were undefined (floated high), causing simultaneous energization of all solenoids.
 
-**v2:** Each cell gets one 74HC2238D 3-to-8 decoder. The MCU sends a 3-bit address to select one of 8 solenoids within the active cell. A separate cell-select signal chooses which of the 5 cells is active.
+**v2:** Each cell gets one 74HC238D 3-to-8 decoder. The MCU sends a 3-bit address to select one of 8 solenoids within the active cell. A separate cell-select signal chooses which of the 5 cells is active.
 
 The `/E` (enable) pin on each decoder is pulled low through a 10kΩ resistor to GND. The MCU must actively drive `/E` high to enable any outputs — meaning the solenoid rail is disconnected from all drive signals until firmware explicitly begins a write cycle.
 
@@ -42,7 +42,7 @@ v1 had notional separation between solenoid and logic rails but shared a common 
 
 | Change | v1 | v2 | Reason |
 |--------|----|----|--------|
-| Cell select | Shift registers | 74HC2238D decoders | Safe powerup state |
+| Cell select | Shift registers | 74HC238D decoders | Safe powerup state |
 | Enable control | None | Pull-down on /E pin | Hardware-enforced off |
 | Flyback diodes | BAV99 | BAT54S | Lower Vf, faster recovery |
 | Rail separation | Partial | Star ground, separate pours | Noise isolation |

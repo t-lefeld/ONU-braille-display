@@ -3,6 +3,8 @@
 **Date:** 2026-06  
 **Type:** Design decision
 
+> **⚠️ SUPERSEDED (2026-11).** The 2S LiPo + TP5100 + MT3608 architecture described here has been replaced by a single-cell USB-C design built around the BQ25616J with power-path management. See [04 — Power Redesign](04_power_redesign_bq25616j.md). This entry is retained as a record of the original reasoning.
+
 ## Overview
 
 Defined the full power architecture for the v2 Braille display, replacing the single-rail approach from v1 with a two-rail system: a dedicated 9V solenoid rail and a separate 5V logic rail.

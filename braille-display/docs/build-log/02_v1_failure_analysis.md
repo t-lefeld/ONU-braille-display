@@ -34,9 +34,9 @@ This is a well-known behavior of unbuffered CMOS shift registers: outputs are no
 
 ## What Changed in v2
 
-### Shift registers replaced with 74HC2238D decoders
+### Shift registers replaced with 74HC238D decoders
 
-The 74HC2238D is a 3-to-8 active-low decoder with an enable pin (`/E`). When `/E` is high (deasserted), all outputs are forced high-impedance regardless of the address inputs.
+The 74HC238D is a 3-to-8 active-low decoder with an enable pin (`/E`). When `/E` is high (deasserted), all outputs are forced high-impedance regardless of the address inputs.
 
 A 10kΩ pull-down resistor on each `/E` pin ensures the enable line is held low at powerup — keeping all decoder outputs deasserted until the MCU explicitly drives `/E` high to begin a write cycle.
 
